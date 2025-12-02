@@ -67,6 +67,12 @@ Cập nhật ABI trong `src/config/contractABI.js` sau khi compile Smart Contrac
 
 ```bash
 npm run dev
+
+'''
+Chạy dev server:
+powershell
+cd d:\Blockchain\frontend
+& npm.cmd run dev
 ```
 
 Ứng dụng sẽ chạy tại `http://localhost:3000`
