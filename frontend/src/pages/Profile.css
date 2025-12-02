@@ -1,0 +1,155 @@
+.profile-page {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.not-connected {
+  text-align: center;
+  padding: 4rem 2rem;
+  background-color: #1a1a1a;
+  border-radius: 12px;
+  border: 1px solid #333;
+}
+
+.not-connected h2 {
+  color: #888;
+  margin-bottom: 0.5rem;
+}
+
+.not-connected p {
+  color: #666;
+}
+
+.profile-header {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  border: 1px solid #667eea;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.profile-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  flex-shrink: 0;
+}
+
+.profile-details h1 {
+  font-size: 2rem;
+  margin: 0 0 0.5rem 0;
+  color: #fff;
+}
+
+.profile-address {
+  font-family: monospace;
+  color: #888;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.profile-balance {
+  color: #888;
+  font-size: 1rem;
+}
+
+.balance-value {
+  color: #4ade80;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.profile-tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #333;
+}
+
+.tab {
+  background: none;
+  border: none;
+  color: #888;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.tab:hover {
+  color: #fff;
+}
+
+.tab.active {
+  color: #667eea;
+}
+
+.tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.profile-content {
+  min-height: 400px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.empty-state h2 {
+  color: #888;
+  margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .profile-info {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .profile-avatar {
+    width: 80px;
+    height: 80px;
+    font-size: 2rem;
+  }
+
+  .profile-details h1 {
+    font-size: 1.5rem;
+  }
+
+  .profile-tabs {
+    overflow-x: auto;
+  }
+
+  .tab {
+    padding: 0.75rem 1.5rem;
+    white-space: nowrap;
+  }
+}
