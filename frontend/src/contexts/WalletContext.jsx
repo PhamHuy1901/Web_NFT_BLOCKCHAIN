@@ -32,7 +32,9 @@ export const WalletProvider = ({ children }) => {
       setError(null)
 
       if (!isMetaMaskInstalled()) {
-        throw new Error('MetaMask is not installed. Please install MetaMask to use this application.')
+        const errorMsg = 'MetaMask is not installed. Please install MetaMask to use this application.'
+        setError(errorMsg)
+        throw new Error(errorMsg)
       }
 
       // Request account access
@@ -58,12 +60,39 @@ export const WalletProvider = ({ children }) => {
       const accountBalance = await web3Provider.getBalance(accounts[0])
       setBalance(ethers.formatEther(accountBalance))
 
-      console.log('Wallet connected:', accounts[0])
+      console.log('✅ Wallet connected:', accounts[0])
+      console.log('Network:', network.name, '- Chain ID:', Number(network.chainId))
+      
+      return { success: true, account: accounts[0] }
     } catch (err) {
-      console.error('Error connecting wallet:', err)
-      setError(err.message)
+      console.error('❌ Error connecting wallet:', err)
+      const errorMessage = err.code === 4001 
+        ? 'Connection request rejected. Please approve the connection in MetaMask.'
+        : err.message
+      setError(errorMessage)
+      return { success: false, error: errorMessage }
     } finally {
       setIsConnecting(false)
+    }
+  }
+
+  // Sign a message (for verification)
+  const signMessage = async (message) => {
+    try {
+      if (!signer) {
+        throw new Error('No signer available. Please connect your wallet first.')
+      }
+
+      const signature = await signer.signMessage(message)
+      console.log('✅ Message signed:', signature)
+      
+      return { success: true, signature }
+    } catch (err) {
+      console.error('❌ Error signing message:', err)
+      const errorMessage = err.code === 4001
+        ? 'Signature request rejected'
+        : err.message
+      return { success: false, error: errorMessage }
     }
   }
 
@@ -180,6 +209,7 @@ export const WalletProvider = ({ children }) => {
     disconnectWallet,
     switchNetwork,
     hasSufficientBalance,
+    signMessage,
   }
 
   return <WalletContext.Provider value={value}>{children}</WalletContext.Provider>

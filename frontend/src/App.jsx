@@ -1,6 +1,8 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { WalletProvider } from './contexts/WalletContext'
 import Header from './components/Header'
+import ProtectedRoute from './components/ProtectedRoute'
+import Login from './pages/Login'
 import HomePage from './pages/HomePage'
 import CreateNFT from './pages/CreateNFT'
 import NFTDetail from './pages/NFTDetail'
@@ -12,15 +14,50 @@ function App() {
     <WalletProvider>
       <Router>
         <div className="App">
-          <Header />
-          <main className="main-content">
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/create" element={<CreateNFT />} />
-              <Route path="/nft/:tokenId" element={<NFTDetail />} />
-              <Route path="/profile" element={<Profile />} />
-            </Routes>
-          </main>
+          <Routes>
+            {/* Public route - Login page */}
+            <Route path="/login" element={<Login />} />
+            
+            {/* Protected routes - require wallet connection */}
+            <Route path="/" element={
+              <ProtectedRoute>
+                <Header />
+                <main className="main-content">
+                  <HomePage />
+                </main>
+              </ProtectedRoute>
+            } />
+            
+            <Route path="/create" element={
+              <ProtectedRoute>
+                <Header />
+                <main className="main-content">
+                  <CreateNFT />
+                </main>
+              </ProtectedRoute>
+            } />
+            
+            <Route path="/nft/:tokenId" element={
+              <ProtectedRoute>
+                <Header />
+                <main className="main-content">
+                  <NFTDetail />
+                </main>
+              </ProtectedRoute>
+            } />
+            
+            <Route path="/profile" element={
+              <ProtectedRoute>
+                <Header />
+                <main className="main-content">
+                  <Profile />
+                </main>
+              </ProtectedRoute>
+            } />
+
+            {/* Catch all - redirect to home */}
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
         </div>
       </Router>
     </WalletProvider>

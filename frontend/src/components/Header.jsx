@@ -1,8 +1,9 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useWallet } from '../contexts/WalletContext'
 import './Header.css'
 
 const Header = () => {
+  const navigate = useNavigate()
   const { 
     account, 
     balance, 
@@ -20,6 +21,11 @@ const Header = () => {
 
   const formatBalance = (bal) => {
     return parseFloat(bal).toFixed(4)
+  }
+
+  const handleDisconnect = () => {
+    disconnectWallet()
+    navigate('/login')
   }
 
   return (
@@ -52,13 +58,21 @@ const Header = () => {
               <div className="wallet-balance">
                 {formatBalance(balance)} ETH
               </div>
-              <button 
-                className="btn btn-secondary"
-                onClick={disconnectWallet}
-                title={account}
-              >
-                {formatAddress(account)}
-              </button>
+              <div className="wallet-dropdown">
+                <button 
+                  className="btn btn-secondary wallet-address"
+                  title={account}
+                >
+                  {formatAddress(account)}
+                </button>
+                <button 
+                  className="btn btn-logout"
+                  onClick={handleDisconnect}
+                  title="Disconnect wallet"
+                >
+                  Logout
+                </button>
+              </div>
             </div>
           ) : (
             <button 
