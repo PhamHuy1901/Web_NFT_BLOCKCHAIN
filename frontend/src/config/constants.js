@@ -1,6 +1,6 @@
-// Contract addresses - UPDATE THESE after deployment
-export const NFT_MARKETPLACE_ADDRESS = '0x...' // TODO: Update after contract deployment
-export const NFT_CONTRACT_ADDRESS = '0x...' // TODO: Update after contract deployment
+// Contract addresses - Deployed on Sepolia Testnet
+export const NFT_MARKETPLACE_ADDRESS = '0x2570Dba6088a8D0bA146611d7c2AEb0e953224b0'
+export const NFT_CONTRACT_ADDRESS = '0xe8Ba9Aae87178c43e68F2cD9A82dfDB4C2C564d6'
 
 // Sepolia Testnet Chain ID
 export const SEPOLIA_CHAIN_ID = 11155111
