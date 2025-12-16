@@ -1,10 +1,10 @@
 import express from 'express';
 import multer from 'multer';
 
-// Sử dụng Mock IPFS service để test (không cần IPFS node)
-// Để dùng IPFS thật, đổi thành: '../services/ipfsService.js'
-// Để dùng Pinata, đổi thành: '../services/ipfsServicePinata.js'
-import { uploadToIPFS, uploadJSONToIPFS, getIPFSUrl } from '../services/ipfsServiceMock.js';
+// Sử dụng Pinata IPFS service (cloud-based, real IPFS)
+// Nếu muốn dùng Mock IPFS, đổi thành: '../services/ipfsServiceMock.js'
+// Nếu muốn dùng local IPFS, đổi thành: '../services/ipfsService.js'
+import { uploadToIPFS, uploadJSONToIPFS, getIPFSUrl } from '../services/ipfsServicePinata.js';
 
 const router = express.Router();
 
