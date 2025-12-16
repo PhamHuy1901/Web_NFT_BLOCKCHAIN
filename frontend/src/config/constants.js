@@ -1,15 +1,15 @@
-// Contract addresses - UPDATE THESE after deployment
-export const NFT_MARKETPLACE_ADDRESS = '0x2570Dba6088a8D0ba146611d7c2AEb0e953224b0' // TODO: Update after contract deployment
-export const NFT_CONTRACT_ADDRESS = '0xe8Ba9Aae87178c43e68F2cD9A82dfDB4C2C564d6' // TODO: Update after contract deployment
+// Contract addresses - Deployed on Sepolia Testnet
+export const NFT_MARKETPLACE_ADDRESS = import.meta.env.VITE_MARKETPLACE_ADDRESS || '0x2570Dba6088a8D0bA146611d7c2AEb0e953224b0'
+export const NFT_CONTRACT_ADDRESS = import.meta.env.VITE_NFT_CONTRACT_ADDRESS || '0xe8Ba9Aae87178c43e68F2cD9A82dfDB4C2C564d6'
 
 // Sepolia Testnet Chain ID
-export const SEPOLIA_CHAIN_ID = 11155111
+export const SEPOLIA_CHAIN_ID = import.meta.env.VITE_SEPOLIA_CHAIN_ID || 11155111
 
 // IPFS Gateway
-export const IPFS_GATEWAY = 'https://ipfs.io/ipfs/'
+export const IPFS_GATEWAY = import.meta.env.VITE_IPFS_GATEWAY || 'https://ipfs.io/ipfs/'
 
 // Backend API URL
-export const API_BASE_URL = 'http://localhost:5000/api'
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api'
 
 // Network configurations
 export const NETWORKS = {

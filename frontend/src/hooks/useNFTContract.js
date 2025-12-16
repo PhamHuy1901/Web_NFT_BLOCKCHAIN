@@ -5,7 +5,7 @@ import { MARKETPLACE_ABI, NFT_ABI } from '../config/contractABI'
 import { NFT_CONTRACT_ADDRESS, NFT_MARKETPLACE_ADDRESS } from '../config/constants'
 
 export const useNFTContract = () => {
-  const { signer, provider } = useWallet()
+  const { signer, provider, account } = useWallet()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
@@ -36,12 +36,13 @@ export const useNFTContract = () => {
       setError(null)
 
       if (!signer) throw new Error('Please connect your wallet')
+      if (!account) throw new Error('Account address not available')
 
       const contract = getNFTContract()
-      const address = await signer.getAddress()
 
       console.log('Minting NFT with metadata:', metadataURI)
-      const tx = await contract.mintNFT(address, metadataURI)
+      console.log('Recipient address:', account)
+      const tx = await contract.mintNFT(account, metadataURI)
       console.log('Transaction sent:', tx.hash)
 
       const receipt = await tx.wait()
@@ -71,7 +72,7 @@ export const useNFTContract = () => {
     } finally {
       setLoading(false)
     }
-  }, [signer, getNFTContract])
+  }, [signer, account, getNFTContract])
 
   // Get NFT metadata
   const getNFTMetadata = useCallback(async (tokenId) => {
@@ -109,15 +110,43 @@ export const useNFTContract = () => {
       setError(null)
 
       const contract = getNFTContract()
-      const balance = await contract.balanceOf(address)
+      const totalSupply = await contract.totalSupply()
       const nfts = []
 
-      for (let i = 0; i < balance; i++) {
-        // Note: This is a simplified version. In production, you'd need
-        // a better way to enumerate tokens (e.g., using tokenOfOwnerByIndex)
-        // or maintain an off-chain index
+      // Iterate through all tokens and check ownership
+      for (let i = 1; i <= totalSupply; i++) {
+        try {
+          const owner = await contract.ownerOf(i)
+          
+          if (owner.toLowerCase() === address.toLowerCase()) {
+            const tokenURI = await contract.tokenURI(i)
+            
+            // Fetch metadata
+            let metadata = { name: `NFT #${i}`, description: '', image: '' }
+            try {
+              const metadataURL = tokenURI.replace('ipfs://', 'https://ipfs.io/ipfs/')
+              const response = await fetch(metadataURL)
+              if (response.ok) {
+                metadata = await response.json()
+              }
+            } catch (metaErr) {
+              console.warn(`Could not fetch metadata for token ${i}:`, metaErr)
+            }
+
+            nfts.push({
+              tokenId: i.toString(),
+              owner,
+              tokenURI,
+              ...metadata,
+            })
+          }
+        } catch (tokenErr) {
+          // Token might not exist or already burned, skip it
+          console.warn(`Error checking token ${i}:`, tokenErr)
+        }
       }
 
+      console.log(`Found ${nfts.length} NFTs for ${address}`)
       return nfts
     } catch (err) {
       console.error('Error getting user NFTs:', err)

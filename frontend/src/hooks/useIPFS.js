@@ -15,7 +15,7 @@ export const useIPFS = () => {
       const formData = new FormData()
       formData.append('file', file)
 
-      const response = await axios.post(`${API_BASE_URL}/ipfs/upload`, formData, {
+      const response = await axios.post(`${API_BASE_URL}/upload`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -23,15 +23,15 @@ export const useIPFS = () => {
 
       return {
         success: true,
-        ipfsHash: response.data.ipfsHash,
-        ipfsUrl: response.data.ipfsUrl,
+        ipfsHash: response.data.hash,
+        ipfsUrl: response.data.url,
       }
     } catch (err) {
       console.error('Error uploading to IPFS:', err)
-      setError(err.message)
+      setError(err.response?.data?.message || err.message)
       return {
         success: false,
-        error: err.message,
+        error: err.response?.data?.message || err.message,
       }
     } finally {
       setUploading(false)
@@ -44,19 +44,28 @@ export const useIPFS = () => {
       setUploading(true)
       setError(null)
 
-      const response = await axios.post(`${API_BASE_URL}/ipfs/upload-metadata`, metadata)
+      // Chuyển đổi metadata để phù hợp với backend API
+      const { name, description, image, attributes } = metadata
+      const imageHash = image.replace('ipfs://', '').replace('https://ipfs.io/ipfs/', '')
+      
+      const response = await axios.post(`${API_BASE_URL}/upload/metadata`, {
+        name,
+        description,
+        imageHash,
+        attributes
+      })
 
       return {
         success: true,
-        ipfsHash: response.data.ipfsHash,
-        ipfsUrl: response.data.ipfsUrl,
+        ipfsHash: response.data.hash,
+        ipfsUrl: response.data.url,
       }
     } catch (err) {
       console.error('Error uploading metadata to IPFS:', err)
-      setError(err.message)
+      setError(err.response?.data?.message || err.message)
       return {
         success: false,
-        error: err.message,
+        error: err.response?.data?.message || err.message,
       }
     } finally {
       setUploading(false)
@@ -66,7 +75,8 @@ export const useIPFS = () => {
   // Get content from IPFS
   const getFromIPFS = async (ipfsHash) => {
     try {
-      const response = await axios.get(`${API_BASE_URL}/ipfs/${ipfsHash}`)
+      const ipfsUrl = `https://ipfs.io/ipfs/${ipfsHash}`
+      const response = await axios.get(ipfsUrl)
       return response.data
     } catch (err) {
       console.error('Error getting from IPFS:', err)
