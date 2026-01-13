@@ -1,0 +1,11 @@
+{
+  "network": "hoodi",
+  "chainId": 560048,
+  "rpcUrl": "https://0xrpc.io/hoodi",
+  "deployer": "",
+  "timestamp": "",
+  "contracts": {
+    "NFT": "",
+    "NFTMarketplace": ""
+  }
+}
