@@ -98,12 +98,16 @@ export const WalletProvider = ({ children }) => {
 
   // Disconnect wallet
   const disconnectWallet = () => {
+    console.log('🔌 Đang ngắt kết nối ví...')
+    console.log('  • Tài khoản:', account)
+    console.log('  • Số dư cuối:', balance, 'ETH')
     setAccount(null)
     setProvider(null)
     setSigner(null)
     setBalance('0')
     setChainId(null)
     setError(null)
+    console.log('✅ Đã ngắt kết nối ví')
   }
 
   // Switch to specific network (e.g., Sepolia testnet)
@@ -141,25 +145,35 @@ export const WalletProvider = ({ children }) => {
 
     const handleAccountsChanged = (accounts) => {
       if (accounts.length === 0) {
+        console.log('🔌 Ví đã ngắt kết nối')
         disconnectWallet()
       } else if (accounts[0] !== account) {
+        console.log('🔄 Tài khoản đã thay đổi:')
+        console.log('  • Tài khoản cũ:', account)
+        console.log('  • Tài khoản mới:', accounts[0])
         setAccount(accounts[0])
         // Reload balance
         if (provider) {
           provider.getBalance(accounts[0]).then((bal) => {
-            setBalance(ethers.formatEther(bal))
+            const newBalance = ethers.formatEther(bal)
+            console.log('  • Số dư mới:', newBalance, 'ETH')
+            setBalance(newBalance)
           })
         }
       }
     }
 
     const handleChainChanged = (chainId) => {
+      console.log('⛓️  Mạng đã thay đổi:')
+      console.log('  • Chain ID mới:', Number(chainId))
       setChainId(Number(chainId))
       // Reload the page to reset state
+      console.log('  • Đang tải lại trang...')
       window.location.reload()
     }
 
     const handleDisconnect = () => {
+      console.log('❌ Ví đã ngắt kết nối (disconnect event)')
       disconnectWallet()
     }
 
@@ -175,6 +189,48 @@ export const WalletProvider = ({ children }) => {
       }
     }
   }, [account, provider])
+
+  // Monitor balance changes
+  useEffect(() => {
+    if (!account || !provider) return
+
+    let isSubscribed = true
+    let previousBalance = balance
+
+    const checkBalanceChanges = async () => {
+      try {
+        const currentBalance = await provider.getBalance(account)
+        const formattedBalance = ethers.formatEther(currentBalance)
+        
+        if (isSubscribed && formattedBalance !== previousBalance) {
+          const diff = parseFloat(formattedBalance) - parseFloat(previousBalance)
+          console.log('💰 Số dư đã thay đổi:')
+          console.log('  • Số dư cũ:', previousBalance, 'ETH')
+          console.log('  • Số dư mới:', formattedBalance, 'ETH')
+          console.log('  • Thay đổi:', diff > 0 ? `+${diff.toFixed(6)}` : diff.toFixed(6), 'ETH')
+          
+          if (diff > 0) {
+            console.log('  ✅ Đã nhận tiền!')
+          } else {
+            console.log('  💸 Đã chuyển tiền!')
+          }
+          
+          setBalance(formattedBalance)
+          previousBalance = formattedBalance
+        }
+      } catch (err) {
+        console.error('Lỗi khi kiểm tra số dư:', err)
+      }
+    }
+
+    // Check balance every 3 seconds
+    const intervalId = setInterval(checkBalanceChanges, 3000)
+
+    return () => {
+      isSubscribed = false
+      clearInterval(intervalId)
+    }
+  }, [account, provider, balance])
 
   // Auto-connect if previously connected
   useEffect(() => {
