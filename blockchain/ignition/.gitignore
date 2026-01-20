@@ -1,0 +1,9 @@
+# Hardhat Ignition deployment files
+# Giữ lại modules (code deploy)
+# Bỏ qua deployments (kết quả deploy)
+
+# Bỏ qua deployment results
+deployments/
+
+# Giữ lại deployment modules
+!modules/
