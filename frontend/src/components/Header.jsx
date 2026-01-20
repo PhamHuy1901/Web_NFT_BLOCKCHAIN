@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useWallet } from '../contexts/WalletContext'
+import { SEPOLIA_CHAIN_ID } from '../config/constants'
 import './Header.css'
 
 const Header = () => {
@@ -7,12 +8,25 @@ const Header = () => {
   const { 
     account, 
     balance, 
+    chainId,
     isConnected, 
     isConnecting, 
     connectWallet, 
     disconnectWallet,
+    switchNetwork,
     isMetaMaskInstalled 
   } = useWallet()
+
+  const isWrongNetwork = isConnected && chainId !== SEPOLIA_CHAIN_ID
+
+  const handleSwitchNetwork = async () => {
+    try {
+      await switchNetwork(SEPOLIA_CHAIN_ID)
+    } catch (err) {
+      console.error('Failed to switch network:', err)
+      alert('Please switch to Ethereum Hoodi network manually in MetaMask.\n\nNetwork: Ethereum Hoodi\nChain ID: 560048\nRPC URL: https://0xrpc.io/hoodi')
+    }
+  }
 
   const formatAddress = (address) => {
     if (!address) return ''
@@ -44,6 +58,15 @@ const Header = () => {
         </nav>
 
         <div className="header-wallet">
+          {isWrongNetwork && (
+            <button 
+              className="btn btn-warning"
+              onClick={handleSwitchNetwork}
+              style={{ marginRight: '10px', backgroundColor: '#ff6b6b', color: 'white' }}
+            >
+              ⚠️ Wrong Network - Click to Switch
+            </button>
+          )}
           {!isMetaMaskInstalled ? (
             <a 
               href="https://metamask.io/download/" 

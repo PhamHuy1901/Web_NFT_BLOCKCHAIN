@@ -1,9 +1,9 @@
-// Contract addresses - Deployed on Sepolia Testnet
-export const NFT_MARKETPLACE_ADDRESS = import.meta.env.VITE_MARKETPLACE_ADDRESS || '0x2570Dba6088a8D0bA146611d7c2AEb0e953224b0'
-export const NFT_CONTRACT_ADDRESS = import.meta.env.VITE_NFT_CONTRACT_ADDRESS || '0xe8Ba9Aae87178c43e68F2cD9A82dfDB4C2C564d6'
+// Contract addresses - Deployed on Ethereum Hoodi Testnet
+export const NFT_MARKETPLACE_ADDRESS = import.meta.env.VITE_MARKETPLACE_ADDRESS || '0xa3b1c57D6CCC06A1AC0bE772dDf9040F4cb605cE'
+export const NFT_CONTRACT_ADDRESS = import.meta.env.VITE_NFT_CONTRACT_ADDRESS || '0x2570Dba6088a8D0bA146611d7c2AEb0e953224b0'
 
-// Sepolia Testnet Chain ID
-export const SEPOLIA_CHAIN_ID = import.meta.env.VITE_SEPOLIA_CHAIN_ID || 11155111
+// Ethereum Hoodi Testnet Chain ID
+export const SEPOLIA_CHAIN_ID = import.meta.env.VITE_SEPOLIA_CHAIN_ID || 560048
 
 // IPFS Gateway
 export const IPFS_GATEWAY = import.meta.env.VITE_IPFS_GATEWAY || 'https://ipfs.io/ipfs/'
@@ -13,6 +13,11 @@ export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localho
 
 // Network configurations
 export const NETWORKS = {
+  560048: {
+    name: 'Ethereum Hoodi Testnet',
+    rpcUrl: 'https://0xrpc.io/hoodi',
+    blockExplorer: 'https://light-hoodi.beaconcha.in',
+  },
   11155111: {
     name: 'Sepolia Testnet',
     rpcUrl: 'https://sepolia.infura.io/v3/',
