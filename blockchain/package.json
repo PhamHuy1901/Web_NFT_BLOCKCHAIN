@@ -9,12 +9,15 @@
     "deploy": "hardhat run scripts/deploy.js",
     "deploy:sepolia": "hardhat run scripts/deploy.js --network sepolia",
     "deploy:hoodi": "hardhat run scripts/deploy.js --network hoodi",
+    "deploy:marketplace:hoodi": "hardhat run scripts/deploy-marketplace-hoodi.js --network hoodi",
     "verify": "hardhat verify",
     "ignition:nft": "hardhat ignition deploy ./ignition/modules/NFT.js --network sepolia",
     "ignition:marketplace": "hardhat ignition deploy ./ignition/modules/NFTMarketplace.js --network sepolia",
     "ignition:nft:hoodi": "hardhat ignition deploy ./ignition/modules/NFT.js --network hoodi",
     "ignition:marketplace:hoodi": "hardhat ignition deploy ./ignition/modules/NFTMarketplace.js --network hoodi",
-    "ignition:token:hoodi": "hardhat ignition deploy ./ignition/modules/NFTToken.js --network hoodi"
+    "ignition:token:hoodi": "hardhat ignition deploy ./ignition/modules/NFTToken.js --network hoodi",
+    "check:balance": "hardhat run scripts/check-balance.js --network hoodi",
+    "check:nft-token": "hardhat run scripts/check-nft-token-balance.js --network hoodi"
   },
   "keywords": [
     "NFT",
