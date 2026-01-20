@@ -1,4 +1,22 @@
-# 🎨 NFT Marketplace - Hướng dẫn Frontend (Thành viên 2)
+# ✅ NFT Marketplace - Frontend đã kết nối với Blockchain!
+
+## 🎉 Thông tin Deployment
+
+**Network:** Sepolia Testnet  
+**Deployer:** 0x25E3Db0605B171Fbf693fc4F44c692D162e2b4B5  
+**Deployed:** 2025-12-09
+
+### Contract Addresses
+```
+NFT Contract:          0xe8Ba9Aae87178c43e68F2cD9A82dfDB4C2C564d6
+Marketplace Contract:  0x2570Dba6088a8D0bA146611d7c2AEb0e953224b0
+```
+
+**Etherscan Links:**
+- NFT: https://sepolia.etherscan.io/address/0xe8Ba9Aae87178c43e68F2cD9A82dfDB4C2C564d6
+- Marketplace: https://sepolia.etherscan.io/address/0x2570Dba6088a8D0bA146611d7c2AEb0e953224b0
+
+---
 
 ## ✅ Đã hoàn thành
 

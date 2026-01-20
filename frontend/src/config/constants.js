@@ -7,10 +7,10 @@ export const HOODI_CHAIN_ID = 560048
 export const DEFAULT_CHAIN_ID = HOODI_CHAIN_ID
 
 // IPFS Gateway
-export const IPFS_GATEWAY = 'https://ipfs.io/ipfs/'
+export const IPFS_GATEWAY = import.meta.env.VITE_IPFS_GATEWAY || 'https://ipfs.io/ipfs/'
 
 // Backend API URL
-export const API_BASE_URL = 'http://localhost:5000/api'
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api'
 
 // Network configurations
 export const NETWORKS = {
