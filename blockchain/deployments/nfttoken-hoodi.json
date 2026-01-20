@@ -1,0 +1,14 @@
+{
+  "network": "hoodi",
+  "chainId": 560048,
+  "deployer": "0xd19f7cF40D4a16013995BEa0AC444Ca13B13cbE1",
+  "timestamp": "2026-01-20T06:56:51.557Z",
+  "contract": {
+    "name": "NFTToken",
+    "address": "0x58A454FbFf53759f3be28061694e4549a4b8f5fC",
+    "tokenName": "NFTToken",
+    "symbol": "NFT",
+    "decimals": 18,
+    "totalSupply": "1000000.0"
+  }
+}

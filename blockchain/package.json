@@ -8,9 +8,16 @@
     "compile": "hardhat compile",
     "deploy": "hardhat run scripts/deploy.js",
     "deploy:sepolia": "hardhat run scripts/deploy.js --network sepolia",
-    "deploy:holesky": "hardhat run scripts/deploy.js --network holesky",
     "deploy:hoodi": "hardhat run scripts/deploy.js --network hoodi",
-    "verify": "hardhat verify"
+    "deploy:marketplace:hoodi": "hardhat run scripts/deploy-marketplace-hoodi.js --network hoodi",
+    "verify": "hardhat verify",
+    "ignition:nft": "hardhat ignition deploy ./ignition/modules/NFT.js --network sepolia",
+    "ignition:marketplace": "hardhat ignition deploy ./ignition/modules/NFTMarketplace.js --network sepolia",
+    "ignition:nft:hoodi": "hardhat ignition deploy ./ignition/modules/NFT.js --network hoodi",
+    "ignition:marketplace:hoodi": "hardhat ignition deploy ./ignition/modules/NFTMarketplace.js --network hoodi",
+    "ignition:token:hoodi": "hardhat ignition deploy ./ignition/modules/NFTToken.js --network hoodi",
+    "check:balance": "hardhat run scripts/check-balance.js --network hoodi",
+    "check:nft-token": "hardhat run scripts/check-nft-token-balance.js --network hoodi"
   },
   "keywords": [
     "NFT",
@@ -23,6 +30,8 @@
   "devDependencies": {
     "@nomicfoundation/hardhat-chai-matchers": "^2.0.0",
     "@nomicfoundation/hardhat-ethers": "^3.0.0",
+    "@nomicfoundation/hardhat-ignition": "^0.15.16",
+    "@nomicfoundation/hardhat-ignition-ethers": "^0.15.17",
     "@nomicfoundation/hardhat-network-helpers": "^1.0.0",
     "@nomicfoundation/hardhat-toolbox": "^4.0.0",
     "@nomicfoundation/hardhat-verify": "^2.0.0",
@@ -31,7 +40,7 @@
     "@types/chai": "^4.2.0",
     "@types/mocha": ">=9.1.0",
     "chai": "^4.2.0",
-    "hardhat": "^2.19.0",
+    "hardhat": "^2.28.3",
     "hardhat-gas-reporter": "^1.0.8",
     "solidity-coverage": "^0.8.0",
     "typechain": "^8.3.0"

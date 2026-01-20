@@ -1,5 +1,6 @@
 require("@nomicfoundation/hardhat-toolbox");
 require("@nomicfoundation/hardhat-verify");
+require("@nomicfoundation/hardhat-ignition-ethers");
 require("dotenv").config();
 
 /** @type import('hardhat/config').HardhatUserConfig */
@@ -22,15 +23,11 @@ module.exports = {
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
       chainId: 11155111,
     },
-    holesky: {
-      url: process.env.HOLESKY_RPC_URL || "https://holesky.drpc.org",
-      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
-      chainId: 17000,
-    },
     hoodi: {
       url: process.env.HOODI_RPC_URL || "https://0xrpc.io/hoodi",
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
       chainId: 560048,
+      gasPrice: "auto",
     },
   },
   etherscan: {

@@ -23,7 +23,7 @@ async function testBackend() {
     const cacheRes = await axios.post(`${BASE_URL}/api/nft/cache`, {
       tokenId: '1',
       name: 'Test NFT',
-      description: 'This is a test NFT',
+      description: 'This is a test NFT testing',
       image: 'ipfs://QmTest...',
       price: '0.1',
       owner: '0xTestOwner...',
