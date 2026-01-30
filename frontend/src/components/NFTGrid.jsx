@@ -1,7 +1,7 @@
 import NFTCard from './NFTCard'
 import './NFTGrid.css'
 
-const NFTGrid = ({ nfts, loading, onBuy, onCancelListing, currentAccount }) => {
+const NFTGrid = ({ nfts, loading, onBuy, onCancelListing, currentAccount, viewMode = 'grid' }) => {
   if (loading) {
     return (
       <div className="nft-grid-loading">
@@ -19,8 +19,10 @@ const NFTGrid = ({ nfts, loading, onBuy, onCancelListing, currentAccount }) => {
     )
   }
 
+  const gridClassName = `nft-grid nft-grid-${viewMode}`
+
   return (
-    <div className="nft-grid">
+    <div className={gridClassName}>
       {nfts.map((nft) => (
         <NFTCard
           key={nft.tokenId}
@@ -28,6 +30,7 @@ const NFTGrid = ({ nfts, loading, onBuy, onCancelListing, currentAccount }) => {
           onBuy={onBuy}
           onCancelListing={onCancelListing}
           isOwner={nft.owner?.toLowerCase() === currentAccount?.toLowerCase()}
+          viewMode={viewMode}
         />
       ))}
     </div>
