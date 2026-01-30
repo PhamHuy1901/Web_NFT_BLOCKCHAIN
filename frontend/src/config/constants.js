@@ -1,6 +1,7 @@
 // Contract addresses - Deployed on Hoodi Network
 export const NFT_CONTRACT_ADDRESS = '0x063e1e499903ecE3fC47e4a0848987aC17EEb4de'
 export const NFT_MARKETPLACE_ADDRESS = '0xF5DF358e16AB6c67F5B69Aab4a0C10d0Aa85b1F9'
+export const NFT_AUCTION_ADDRESS = '0x90AE1538dc01067c72f9880b6B71bc2BD680Ca29'
 
 // Hoodi Network Chain ID
 export const HOODI_CHAIN_ID = 560048
