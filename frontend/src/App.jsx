@@ -7,6 +7,9 @@ import HomePage from './pages/HomePage'
 import CreateNFT from './pages/CreateNFT'
 import NFTDetail from './pages/NFTDetail'
 import Profile from './pages/Profile'
+import AuctionPage from './pages/AuctionPage'
+import AuctionDetail from './pages/AuctionDetail'
+import CreateAuction from './pages/CreateAuction'
 import './App.css'
 
 function App() {
@@ -51,6 +54,34 @@ function App() {
                 <Header />
                 <main className="main-content">
                   <Profile />
+                </main>
+              </ProtectedRoute>
+            } />
+
+            {/* Auction routes */}
+            <Route path="/auctions" element={
+              <ProtectedRoute>
+                <Header />
+                <main className="main-content">
+                  <AuctionPage />
+                </main>
+              </ProtectedRoute>
+            } />
+
+            <Route path="/auction/create" element={
+              <ProtectedRoute>
+                <Header />
+                <main className="main-content">
+                  <CreateAuction />
+                </main>
+              </ProtectedRoute>
+            } />
+
+            <Route path="/auction/:auctionId" element={
+              <ProtectedRoute>
+                <Header />
+                <main className="main-content">
+                  <AuctionDetail />
                 </main>
               </ProtectedRoute>
             } />

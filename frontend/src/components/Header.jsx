@@ -53,6 +53,7 @@ const Header = () => {
 
         <nav className="header-nav">
           <Link to="/" className="nav-link">Marketplace</Link>
+          <Link to="/auctions" className="nav-link">🔨 Auctions</Link>
           <Link to="/create" className="nav-link">Create NFT</Link>
           {isConnected && <Link to="/profile" className="nav-link">My Profile</Link>}
         </nav>

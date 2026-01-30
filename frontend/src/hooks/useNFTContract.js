@@ -179,6 +179,45 @@ export const useNFTContract = () => {
     }
   }, [signer, getNFTContract])
 
+  // Approve any address to transfer NFT
+  const approveAddress = useCallback(async (tokenId, addressToApprove) => {
+    try {
+      setLoading(true)
+      setError(null)
+
+      if (!signer) throw new Error('Please connect your wallet')
+
+      const contract = getNFTContract()
+      const tx = await contract.approve(addressToApprove, tokenId)
+      await tx.wait()
+
+      return { success: true }
+    } catch (err) {
+      console.error('Error approving address:', err)
+      setError(err.message)
+      return { success: false, error: err.message }
+    } finally {
+      setLoading(false)
+    }
+  }, [signer, getNFTContract])
+
+  // Get approved address for a token
+  const getApproved = useCallback(async (tokenId) => {
+    try {
+      const contract = getNFTContract()
+      return await contract.getApproved(tokenId)
+    } catch (err) {
+      console.error('Error getting approved address:', err)
+      return '0x0000000000000000000000000000000000000000'
+    }
+  }, [getNFTContract])
+
+  // Get my NFTs (alias for getUserNFTs with current account)
+  const getMyNFTs = useCallback(async () => {
+    if (!account) return []
+    return getUserNFTs(account)
+  }, [account, getUserNFTs])
+
   return {
     loading,
     error,
@@ -186,5 +225,8 @@ export const useNFTContract = () => {
     getNFTMetadata,
     getUserNFTs,
     approveMarketplace,
+    approveAddress,
+    getApproved,
+    getMyNFTs,
   }
 }
