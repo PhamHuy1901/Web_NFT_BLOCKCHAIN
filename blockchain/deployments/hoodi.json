@@ -6,6 +6,8 @@
     "NFT": "0x063e1e499903ecE3fC47e4a0848987aC17EEb4de",
     "NFTMarketplace": "0xF5DF358e16AB6c67F5B69Aab4a0C10d0Aa85b1F9"
   },
-  "auctionContract": "0x90AE1538dc01067c72f9880b6B71bc2BD680Ca29",
-  "auctionDeployedAt": "2026-01-30T07:14:46.884Z"
+  "auctionContract": "0xe5C289bBA84C59fFd745be415dF28CD9E99B68B9",
+  "auctionDeployedAt": "2026-01-30T09:33:25.312Z",
+  "offerContract": "0x807813394240EDc41c9d7374fCcf429abBee540D",
+  "offerDeployedAt": "2026-01-30T09:32:46.795Z"
 }

@@ -29,6 +29,12 @@ module.exports = {
       chainId: 560048,
       gasPrice: "auto",
     },
+    celoSepolia: {
+      url: process.env.CELO_SEPOLIA_RPC_URL || "https://celo-sepolia.drpc.org",
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
+      chainId: 11142220,
+      gasPrice: "auto",
+    },
   },
   etherscan: {
     apiKey: {

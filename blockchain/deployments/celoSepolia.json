@@ -1,0 +1,11 @@
+{
+  "network": "celoSepolia",
+  "deployer": "0x25E3Db0605B171Fbf693fc4F44c692D162e2b4B5",
+  "timestamp": "2026-02-02T18:08:56.285Z",
+  "contracts": {
+    "NFT": "0xe8Ba9Aae87178c43e68F2cD9A82dfDB4C2C564d6",
+    "NFTMarketplace": "0x2570Dba6088a8D0bA146611d7c2AEb0e953224b0"
+  },
+  "auctionContract": "0x784baC7475665f108221bbeF83DD0767c756D4fb",
+  "auctionDeployedAt": "2026-02-02T18:37:55.529Z"
+}

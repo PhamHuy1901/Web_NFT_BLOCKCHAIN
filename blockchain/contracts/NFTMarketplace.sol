@@ -274,6 +274,30 @@ contract NFTMarketplace is ReentrancyGuard, Ownable {
     }
 
     /**
+     * @dev Force cancel listing khi NFT đã được bán qua contract khác (Offer, Auction)
+     * Ai cũng có thể gọi, nhưng chỉ xóa nếu seller không còn sở hữu NFT
+     * @param tokenId ID của NFT cần cancel listing
+     */
+    function forceRemoveListing(uint256 tokenId) external nonReentrant {
+        Listing memory listing = listings[tokenId];
+        
+        // Chỉ xử lý nếu đang được list
+        if (!listing.isListed) {
+            return;
+        }
+        
+        // Kiểm tra owner hiện tại của NFT
+        address currentOwner = nftContract.ownerOf(tokenId);
+        
+        // Nếu seller không còn là owner → xóa listing
+        require(currentOwner != listing.seller, "Seller still owns the NFT");
+        
+        _removeListing(tokenId);
+        
+        emit ListingCancelled(tokenId, listing.seller);
+    }
+
+    /**
      * @dev Receive function để nhận ETH
      */
     receive() external payable {}

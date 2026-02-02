@@ -1,0 +1,23 @@
+{
+  "network": "hoodi",
+  "chainId": 560048,
+  "deployer": "0x25E3Db0605B171Fbf693fc4F44c692D162e2b4B5",
+  "timestamp": "2026-01-30T09:31:59.889Z",
+  "contracts": {
+    "nft": {
+      "address": "0x74414Ce4a0CEAC93bE30bd1bd4c6DFCf7c037723",
+      "name": "NFT Marketplace Token",
+      "symbol": "NFTM"
+    },
+    "marketplace": {
+      "address": "0x188bEe20006886F69cE1464662E0D309736Bc1dC",
+      "fee": 2.5,
+      "paymentMethod": "ETH"
+    }
+  },
+  "instructions": {
+    "frontend": "Update frontend/src/config/constants.js with these addresses",
+    "metamask": "Add Hoodi Network to MetaMask:\n        Network Name: Hoodi Network\n        RPC URL: https://0xrpc.io/hoodi\n        Chain ID: 560048\n        Currency Symbol: ETH",
+    "usage": "Users will pay with ETH when buying NFTs from the marketplace"
+  }
+}

@@ -31,7 +31,7 @@ const HomePage = () => {
 
       const listings = await getAllListings()
       
-      // Fetch metadata for each NFT
+      // Fetch metadata for each NFT and filter invalid listings
       const nftsWithMetadata = await Promise.all(
         listings.map(async (listing) => {
           const metadata = await getNFTMetadata(listing.tokenId)
@@ -43,7 +43,13 @@ const HomePage = () => {
         })
       )
 
-      setNfts(nftsWithMetadata)
+      // Filter: chỉ hiển thị listing nếu seller vẫn là owner của NFT
+      const validListings = nftsWithMetadata.filter(nft => {
+        if (!nft || !nft.owner || !nft.seller) return false
+        return nft.owner.toLowerCase() === nft.seller.toLowerCase()
+      })
+
+      setNfts(validListings)
     } catch (err) {
       console.error('Error loading NFTs:', err)
       setError('Failed to load NFTs. Please try again later.')

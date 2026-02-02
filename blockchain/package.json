@@ -9,6 +9,7 @@
     "deploy": "hardhat run scripts/deploy.js",
     "deploy:sepolia": "hardhat run scripts/deploy.js --network sepolia",
     "deploy:hoodi": "hardhat run scripts/deploy.js --network hoodi",
+    "deploy:celoSepolia": "hardhat run scripts/deploy.js --network celoSepolia",
     "deploy:marketplace:hoodi": "hardhat run scripts/deploy-marketplace-hoodi.js --network hoodi",
     "verify": "hardhat verify",
     "ignition:nft": "hardhat ignition deploy ./ignition/modules/NFT.js --network sepolia",

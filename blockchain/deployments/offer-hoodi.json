@@ -1,0 +1,8 @@
+{
+  "network": "hoodi",
+  "nftContract": "0x74414Ce4a0CEAC93bE30bd1bd4c6DFCf7c037723",
+  "marketplaceContract": "0x188bEe20006886F69cE1464662E0D309736Bc1dC",
+  "offerContract": "0x807813394240EDc41c9d7374fCcf429abBee540D",
+  "deployer": "0x25E3Db0605B171Fbf693fc4F44c692D162e2b4B5",
+  "timestamp": "2026-01-30T09:32:46.794Z"
+}
