@@ -28,6 +28,7 @@ const NFTDetail = () => {
   const [showListForm, setShowListForm] = useState(false)
   const [showOfferForm, setShowOfferForm] = useState(false)
   const [actionLoading, setActionLoading] = useState(false)
+  const [offerStuckWarning, setOfferStuckWarning] = useState(false)
 
   const isOwner = nft && account && nft.owner.toLowerCase() === account.toLowerCase()
 
@@ -59,6 +60,13 @@ const NFTDetail = () => {
           if (hasOffer) {
             const userOfferData = tokenOffers.find(o => o.offerId === offerId)
             setUserOffer(userOfferData)
+            
+            // Check if offer is stuck (user has offer but NFT owner is someone else)
+            // This means NFT was sold via marketplace, not by accepting offer
+            if (userOfferData && metadata.owner.toLowerCase() !== account.toLowerCase()) {
+              // User has active offer but NFT owner changed
+              setOfferStuckWarning(true)
+            }
           }
         }
       } catch (err) {
@@ -370,7 +378,35 @@ const NFTDetail = () => {
             {/* Make Offer Section - for non-owners */}
             {!isOwner && isConnected && (
               <div className="make-offer-section">
-                {userOffer ? (
+                {/* Warning for stuck offer */}
+                {offerStuckWarning && userOffer && (
+                  <div className="stuck-offer-warning" style={{
+                    backgroundColor: '#f8d7da',
+                    border: '2px solid #dc3545',
+                    borderRadius: '8px',
+                    padding: '16px',
+                    marginBottom: '16px'
+                  }}>
+                    <h4 style={{ color: '#721c24', marginTop: 0 }}>🚨 Action Required!</h4>
+                    <p style={{ color: '#721c24', marginBottom: '12px' }}>
+                      This NFT has been sold to someone else, but your offer is still active.
+                      Your <strong>{userOffer.offerPrice} CELO</strong> is locked in the contract.
+                    </p>
+                    <p style={{ color: '#721c24', marginBottom: '12px', fontSize: '14px' }}>
+                      Please cancel your offer immediately to get your funds back!
+                    </p>
+                    <button 
+                      className="btn btn-danger"
+                      onClick={() => handleCancelOffer(userOffer.offerId)}
+                      disabled={actionLoading}
+                      style={{ marginTop: '8px' }}
+                    >
+                      {actionLoading ? 'Cancelling...' : '💸 Cancel Offer & Get Refund'}
+                    </button>
+                  </div>
+                )}
+
+                {userOffer && !offerStuckWarning ? (
                   <div className="user-offer-info">
                     <p>Your offer: <strong>{userOffer.offerPrice} ETH</strong></p>
                     <p className="offer-expiry">{formatTimeLeft(userOffer.expirationTime)}</p>
@@ -392,6 +428,28 @@ const NFTDetail = () => {
                 ) : (
                   <div className="offer-form">
                     <h4>Make an Offer</h4>
+                    
+                    <div className="offer-warning" style={{
+                      backgroundColor: '#fff3cd',
+                      border: '1px solid #ffc107',
+                      borderRadius: '8px',
+                      padding: '12px',
+                      marginBottom: '16px',
+                      fontSize: '14px',
+                      color: '#856404'
+                    }}>
+                      <strong>⚠️ Important:</strong> Your funds will be locked until:
+                      <ul style={{ marginTop: '8px', marginBottom: '0', paddingLeft: '20px' }}>
+                        <li>The seller accepts your offer, OR</li>
+                        <li>You cancel it, OR</li>
+                        <li>It expires (7 days)</li>
+                      </ul>
+                      <p style={{ marginTop: '8px', marginBottom: '0', fontSize: '13px' }}>
+                        <strong>Note:</strong> If this NFT is sold via marketplace (not by accepting your offer), 
+                        you'll need to <strong>manually cancel</strong> your offer to get refund.
+                      </p>
+                    </div>
+
                     <input
                       type="number"
                       step="0.001"

@@ -7,5 +7,7 @@
     "NFTMarketplace": "0x2570Dba6088a8D0bA146611d7c2AEb0e953224b0"
   },
   "auctionContract": "0x784baC7475665f108221bbeF83DD0767c756D4fb",
-  "auctionDeployedAt": "2026-02-02T18:37:55.529Z"
+  "auctionDeployedAt": "2026-02-02T18:37:55.529Z",
+  "offerContract": "0x9D55DCf1E993Fe6da688BD16464dCeBABDaB0cc7",
+  "offerDeployedAt": "2026-02-02T19:08:54.240Z"
 }
