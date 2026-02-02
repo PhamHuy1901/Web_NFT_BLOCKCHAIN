@@ -177,3 +177,144 @@
     font-size: 1.5rem;
   }
 }
+
+/* Make Offer Section */
+.make-offer-section {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.user-offer-info {
+  background: linear-gradient(135deg, rgba(74, 222, 128, 0.1) 0%, rgba(34, 197, 94, 0.1) 100%);
+  border: 1px solid #4ade80;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.user-offer-info p {
+  margin: 0.25rem 0;
+  color: #ccc;
+}
+
+.user-offer-info strong {
+  color: #4ade80;
+  font-size: 1.2rem;
+}
+
+.offer-expiry {
+  font-size: 0.85rem;
+  color: #888 !important;
+}
+
+.offer-form {
+  background-color: #2a2a2a;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.offer-form h4 {
+  margin: 0 0 1rem 0;
+  color: #fff;
+}
+
+.offer-note {
+  font-size: 0.85rem;
+  color: #888;
+  margin: 0.5rem 0 1rem 0;
+}
+
+.offer-form-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.offer-form-buttons button {
+  flex: 1;
+}
+
+/* Offers Section */
+.offers-section {
+  background-color: #2a2a2a;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 1rem;
+}
+
+.offers-section h3 {
+  margin: 0 0 1rem 0;
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+.offers-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.offer-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  border: 1px solid #333;
+}
+
+.offer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.offer-price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #4ade80;
+}
+
+.offer-from {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.offer-item .offer-expiry {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+  color: #000;
+  font-weight: 600;
+}
+
+.btn-success:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.btn-small {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+/* Offers Info for non-owners */
+.offers-info {
+  background-color: #2a2a2a;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.offers-info p {
+  margin: 0.25rem 0;
+  color: #ccc;
+}
+
+.highest-offer {
+  color: #4ade80 !important;
+  font-weight: 600;
+}

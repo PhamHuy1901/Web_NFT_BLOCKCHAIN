@@ -40,7 +40,7 @@ async function main() {
 
   // Nếu vẫn không có, dùng địa chỉ hardcoded
   if (!nftAddress) {
-    nftAddress = "0x063e1e499903ecE3fC47e4a0848987aC17EEb4de"; // Default NFT address trên Hoodi
+    nftAddress = "0x74414Ce4a0CEAC93bE30bd1bd4c6DFCf7c037723"; // Default NFT address trên Hoodi
   }
 
   console.log("Using NFT contract address:", nftAddress);

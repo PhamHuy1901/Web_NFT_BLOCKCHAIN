@@ -1,7 +1,7 @@
 {
   "network": "hoodi",
-  "nftContract": "0x063e1e499903ecE3fC47e4a0848987aC17EEb4de",
-  "auctionContract": "0x90AE1538dc01067c72f9880b6B71bc2BD680Ca29",
+  "nftContract": "0x74414Ce4a0CEAC93bE30bd1bd4c6DFCf7c037723",
+  "auctionContract": "0xe5C289bBA84C59fFd745be415dF28CD9E99B68B9",
   "deployer": "0x25E3Db0605B171Fbf693fc4F44c692D162e2b4B5",
-  "timestamp": "2026-01-30T07:14:46.884Z"
+  "timestamp": "2026-01-30T09:33:25.312Z"
 }
